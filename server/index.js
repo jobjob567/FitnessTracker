@@ -15,11 +15,11 @@ app
     .use('/static', express.static(path.join(__dirname, '../NoFramework')))
 
     .get(   '/',
-            (req, res) => res.send('Hello New Paltz')
+            (req, res) => res.send('Welcome to Irunner!')
         )
-    .get(   '/heb',
+    .get(   '/backdoor',
         function(req, res){
-            res.send({msg: 'Shalom World'})
+            res.send({msg: 'No alley entrance allowed!'})
         }
     )
     .use('/users' , userController);
