@@ -3,7 +3,19 @@ const path = require('path');
 const userController = require('./controllers/Users');
 
 const app = expres();
-const port = 4000;
+const port = process.env.PORT || 3000;
+
+app 
+    .get('/port', (req,res) => {
+        return res.send("Using port: " + port);
+    })
+    .use('/static', express.static(path.join(__dirname, '../NoFramework')))
+    .use('/users' , userController);
+app.listen(port, () => console.log("Running on http://localhost:$(port)"))
+
+
+
+/*const port = 4000;
 
 app 
     .use( function( req, res, next) {
@@ -24,3 +36,4 @@ app
     )
     .use('/users' , userController);
 app.listen(port, () => console.log("Running on http://localhost:$(port)"))
+*/
