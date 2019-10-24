@@ -2,8 +2,8 @@ var attempt = 3; // Variable to count number of attempts.
 // Below function Executes on click of login button.
 
 const users = [
-    { id: "job", pass: giuliani},
-    { id: "test", pass: 123}
+    { id: "job", pass: "giuliani"},
+    { id: "test", pass: "123"}
 ];
 
 function register(userN, passN){
@@ -11,19 +11,23 @@ function register(userN, passN){
         {id: userN, pass: passN}
     ];
     users.concat(arr1);
+    for(i=0;i<users.length;i++){
+        console.log("id:"+users[i].id+"pass:"+users[i].pass)
+        window.location = "index.html";
+    }
 }
 
 function validate(){
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
-    for(i=0; i < users.length(); i++){
+    for(i=0;i<users.length;i++){
         if ( username == users[i].id && password == users[i].pass){
             alert ("Login successfully");
             window.location = "index.html"; // Redirecting to other page.
             return false;
         }
-    
-        else{
+    }
+      /*  else{
             attempt --;// Decrementing by one.
             alert("You have left "+attempt+" attempt;");
             // Disabling fields after 3 attempts.
@@ -34,5 +38,5 @@ function validate(){
                 return false;
             }
         }
-    }
+    */
 }
