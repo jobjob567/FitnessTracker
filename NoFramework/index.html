@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+
 <head>
  <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -256,6 +258,7 @@
         </style>
         <body>
         
+        <script src="../server/controllers/login.js"></script>
         <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
         
         <div id="id01" class="modal">
@@ -282,7 +285,7 @@
         
               <div class="clearfix">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <button type="submit" class="signupbtn">Sign Up</button>
+                <button type="submit" onclick="register(username,psw)"   class="signupbtn">Sign Up</button>
               </div>
             </div>
           </form>
