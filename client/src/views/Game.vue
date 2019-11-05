@@ -7,6 +7,21 @@
     <div class="columns">
         <div class="column is-one-quarter">
             
+            
+            <ul class="panel">
+                <p class="panel-heading">
+                    Workout Test
+                </p>
+                <li v-for="(p, i) in game.Players " :key="i" 
+                    class="panel-block" :class="{ 'is-active': i == game.Dealer }">
+                    <span class="panel-icon">
+                    <i class="fas" :class=" i == game.Dealer ? 'fa-user-secret' : 'fa-user' " aria-hidden="true"></i>
+                    </span>
+                    {{p.name}}
+                </li>
+                <button onclick="myFunction()">Try it</button>
+            </ul>
+            
             <ul class="panel">
                 <p class="panel-heading">
                     Players
@@ -17,15 +32,6 @@
                     <i class="fas" :class=" i == game.Dealer ? 'fa-user-secret' : 'fa-user' " aria-hidden="true"></i>
                     </span>
                     {{p.name}}
-                </li>
-            </ul>
-
-            <ul class="panel">
-                <p class="panel-heading">
-                    My Hand
-                </p>
-                <li v-for="(c, i) in My_Captions " :key="i" class="panel-block is-active">
-                    {{c}}
                 </li>
             </ul>
 
@@ -46,10 +52,12 @@
 
 <script>
 import { Game_Client, Game_Server, My_Captions } from "../models/Game";
+import { Tracker_Server, Tracker_Client } from "../models/Game";
 export default {
     data: ()=> ({
         game: Game_Client,
-        My_Captions
+        My_Captions,
+        Tracker_Client
     }),
     created(){
         this.My_Captions = Game_Server.Get_Hand();

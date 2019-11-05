@@ -22,8 +22,8 @@
         </router-link>
 
         <router-link exact-active-class="active" class="navbar-item" to="/game">
-            <i class="fas fa-ghost fa-pull-left"></i>
-            Game
+            <i class="fas fa-running fa-pull-left"></i>
+            Tracker
         </router-link>
 
         <div class="navbar-item has-dropdown is-hoverable">
@@ -36,11 +36,13 @@
                     <i class="fab fa-vuejs fa-pull-left"></i>
                     About
                 </router-link>
+
+                <router-link class="navbar-item" to="/game" exact-active-class="active">
+                    <i class="fas fa-running fa-pull-left"></i>
+                    Tracker
+                </router-link>
             <a class="navbar-item">
-                Jobs
-            </a>
-            <a class="navbar-item">
-                Contact
+                Guides
             </a>
             <hr class="navbar-divider">
             <a class="navbar-item">
