@@ -69,6 +69,12 @@ export default {
         }
     }
 }
+
+function myFunction() {
+  var btn = document.createElement("BUTTON");
+  document.body.appendChild(btn);
+}
+
 </script>
 
 <style>
