@@ -21,7 +21,8 @@
                 <li>
                     <span class="panel-icon">
                     <input type="text" class="form-control" placeholder="What is your weight?" v-model="weight" />
-                    
+                    <p id='demo' style='display: none'>{{weight}}</p>     
+                    <button type='button' onclick="toggleText()">Click me</button>
                     </span>
                 </li>
             </ul>
@@ -80,6 +81,9 @@ export default {
     },
 
     methods: {
+        toggleText(){
+            this.Tracker_Server.toggleText();
+        },
         pictureClicked(){
             this.game.Picture_In_Play = Game_Server.Get_Next_Picture();
             this.game.Dealer ++;

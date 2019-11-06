@@ -22,6 +22,14 @@ export const Tracker_Server = {
     Get_Work(){
         return this.Work_List.slice(0,Work_List.length)
     },
+    toggleText(weight) {
+        var text = document.getElementById("demo");
+        if (text.style.display === "none") {
+          text.style.display = "block";
+        } else {
+          text.style.display = "none";
+        }
+      }
 }
 
 export var Workouts = [
