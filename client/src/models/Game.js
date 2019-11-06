@@ -1,6 +1,39 @@
 import Caption_Deck from "./Captions";
-import Workouts from "./Track_Info";
-import METS from "./Track_Info";
+import Work_List from "./Track_Info";
+import METS from "./METS.js";
+
+
+
+// my irunnning code js starts here ////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const Tracker_Server = {
+    User: [],
+    Type_Of_Workout: 0,
+    Work_List,
+    METS,
+    Get_Met(num){
+        index = METS[num];
+        return index;
+    },
+    Get_CCount(met, weight){
+        cal= 0.0175*met*weight;
+        return cal;
+    },
+    Get_Work(){
+        return this.Work_List.slice(0,Work_List.length)
+    },
+}
+
+export var Workouts = [
+
+];
+
+export const Tracker_Client = {
+    Workouts,
+    Cut_Cal: 0,
+}
+
+////////////////// class code //////////////////////////////////////////
 
 export const Game_Server = {
     Players: [],
@@ -59,23 +92,4 @@ export class Player {
     name;
     points;
     captions;
-}
-
-// my irunnning code js starts here
-
-export const Tracker_Server = {
-    User: [],
-    Workouts,
-    METS
-
-}
-
-export const Tracker_Client = {
-    Players: [
-        { name: "Moshe", points: 0 }
-    ],
-    Dealer: 0,
-    Captions_In_Play: [], // strings
-    Picture_In_Play: "",
-    Caption_Chosen: -1
 }
