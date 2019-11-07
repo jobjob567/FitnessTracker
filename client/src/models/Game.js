@@ -15,6 +15,15 @@ export const Tracker_Server = {
         index = METS[num];
         return index;
     },
+    GetIndex(str){
+        chosen;
+        for (i = 0; i < Work_List.length; i++) {
+            if(Work_List[i].equals(str) == true){
+                chosen = i;
+            }
+          }
+          return chosen;
+    },
     Get_CCount(met, weight){
         cal= 0.0175*met*weight;
         return cal;
@@ -22,14 +31,6 @@ export const Tracker_Server = {
     Get_Work(){
         return this.Work_List.slice(0,Work_List.length)
     },
-    toggleText(weight) {
-        var text = document.getElementById("demo");
-        if (text.style.display === "none") {
-          text.style.display = "block";
-        } else {
-          text.style.display = "none";
-        }
-      }
 }
 
 export var Workouts = [
