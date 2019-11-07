@@ -47,6 +47,10 @@
             </form>
             
             
+            
+        </div>
+        <div class="column">
+            
             <ul class="panel">
                 <p class="panel-heading">
                     Workout Test
@@ -64,10 +68,6 @@
                     </span>
                 </li>
             </ul>
-            
-        </div>
-        <div class="column">
-            
         </div>
     </div>
 
