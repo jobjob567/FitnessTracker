@@ -1,2 +1,4 @@
-# FitnessTracker
-App due at end of class for fitness tracking.
+# Main in class project for Fall 2019
+This is a paragraph with *some* realy **important** information
+
+Some other **great** information
