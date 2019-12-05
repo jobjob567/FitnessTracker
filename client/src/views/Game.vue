@@ -6,11 +6,12 @@
     </h1> 
 
     <div class="columns">
-        <div class="column is-one-quarter">
+        <div id = "Tracking" class="column is-one-quarter">
 
-            <form id="Track" method="GET"><br>
+            <form name="Track" method="GET"><br>
                 What did you do today? <br/><span>
-                    <select name="type" form="Ex">
+                    <select id= "select" name="type" form="Ex">
+                        <option value="" selected disabled>Please select workout</option>
                         <option>"Bicycling; 12-13.9 mph (leisure, moderate effort)"</option>
                         <option>"Bicycling; mountain-biking, uphill, vigorous effort"</option>
                         <option>"Stationary cycling; (90-100 watts)"</option>
@@ -40,32 +41,35 @@
                     </span><br/>
 
                     
-                How long did you do it?(Minutes) <input type="integer" name="Ctime" id = "Cweight"><br/>
+                How long did you do it?(Minutes) <input type="integer" name="Ctime" id = "Ctime"><br/>
                 What is your current weight? <input type="integer" name="Cweight" id = "Cweight"><br/><br/>
                 Your total calories burned in this activity were: <span id="Tburnt"></span><br/>
-                <input type="button" value="Submit" onClick="writeValues(form)">
+                <input type="button" value="Submit" @click="getCCount(select, weight, time)">
             </form>
             
-            
+            <ul class="panel">
+                <p class="panel-heading">
+                    Players
+                </p>
+                <li v-for="(p, i) in game.Players " :key="i" 
+                    class="panel-block" :class="{ 'is-active': i == game.Dealer, 'has-text-primary': i == me.User_Id }">
+                    <span class="panel-icon">
+                    <i class="fas" :class=" i == game.Dealer ? 'fa-user-secret' : 'fa-user' " aria-hidden="true"></i>
+                    </span>
+                    {{p.name}}
+                </li>
+            </ul>
             
         </div>
         <div class="column">
             
             <ul class="panel">
                 <p class="panel-heading">
-                    Workout Test
+                    Burn List.
                 </p>
-                <li v-for="(c, i) in Workouts " :key="i" class="panel-block is-active">
-                  
-                <button type="button" class="btn btn-primary" @click="click" >{{c}}</button>
+                <li v-for="(c, i) in My_Done " :key="i" class="panel-block is-active">
+                  {{c}}
                     
-                </li>
-                <li>
-                    <span class="panel-icon">
-                    <input type="text" class="form-control" placeholder="What is your weight?" v-model="weight" />
-                    <p id='demo' style='display: none'>{{weight}}</p>     
-                    <button type='button' onclick="toggleText()">Click me</button>
-                    </span>
                 </li>
             </ul>
         </div>
@@ -75,47 +79,46 @@
 </template>
 
 <script>
-import { Game_Client, Game_Server, My_Captions } from "../models/Game";
-import { Tracker_Server, Tracker_Client, Workouts } from "../models/Game";
+
+import { Tracker_Server } from "../models/Game";
+
 export default {
     data: ()=> ({
-        game: Game_Client,
-        My_Captions,
-        Tracker_Client,
-        Workouts
+        game:{},
+        My_Done: [],
+        me: Tracker_Server.User,
+
     }),
-    created(){
-        this.My_Captions = Game_Server.Get_Hand();
+
+    async created(){
+        this.Workouts = await Tracker_Server.Get_Work();
+        setInterval( async ()=> this.game = await Tracker_Server.Get_State(), 2000 )
     },
     created(){
         this.Workouts = Tracker_Server.Get_Work();
-    },
+        },
 
     methods: {
-        pictureClicked(){
-            Game_Server.Flip_Picture();
+        getIndex(str){
+            Tracker_Server.Get_Index(str);
         },
-        async submitCaption(caption, i){
-            const response = await Game_Server.Submit_Caption(caption);
-            this.My_Captions.splice(i, 1);
+        getMET(index){
+            Tracker_Server.Get_MET(Get_Index(work));
         },
-        async chooseCaption(i){
-            const response = await Game_Server.Choose_Caption(i);
-        }
+        getCCount(work, weight, time){
+            Tracker_Server.Get_CCount(getMET(getIndex(work)), weight, time);
+            
+            this.My_Done = Tracker_Server.Get_Done();
+        },
+        join(){
+            Tracker_Server.Join(this.name)
+                .catch(err=> {
+                    console.error(err);
+                    this.error = err.message;
+                });
+        },
     }
 }
-window.writeValues = function(form) {
-    var Wtype = form.type.value;
-    var Ct = form.Ctime.value;
-    var Cw = form.Cweight.value;
-    var index = Tracker_Server.GetIndex(Wtype);
-    var mets = Tracker_Server.Get_Met(index);
-    var summith = Tracker_Server.Get_CCount(mets,Cw);
-
-    document.getElementById("Tburnt").innerHTML = Wtype + ' '+Ct;
-}
-
-
 
 </script>
 

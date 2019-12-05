@@ -2,6 +2,9 @@ const express = require('express');
 const { Game } = require("../models/Game");
 const { CustomError } = require('../models/CustomError');
 
+
+const { Tracker_Server } = require("../models/Game");
+
 const app = express.Router();
 
 app.get('/', (req, res)=>{
@@ -29,6 +32,27 @@ app.post('/caption_chosen', (req, res)=>{
     Game.Choose_Caption(req.user_id, req.body.id);
     res.send({ success: true });
 } );
+
+// miiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiine
+
+app.post('/ccount', (req, res)=>{
+    Tracker_Server.GetCCount(Get_MET(Get_Index(req.body.work)), req.body.weight, req.body.time);
+    res.send({ success: true });
+} );
+app.get('/workouts', (req, res)=>{
+    res.send(Tracker_Server.Get_Work());
+} );
+app.get('/done', (req, res)=>{
+    res.send(Tracker_Server.Get_Done(req.user_id));
+} );
+app.get('/met', (req, res)=>{
+    res.send(Tracker_Server.Get_Met(req.body.text));
+} );
+app.get('/index', (req, res)=>{
+    res.send(Tracker_Server.Get_Index(req.body.text))
+} );
+
+
 
 
 

@@ -1,4 +1,4 @@
-export default [ "Bicycling; 12-13.9 mph (leisure, moderate effort)"
+module.exports = [ "Bicycling; 12-13.9 mph (leisure, moderate effort)"
     ,"Bicycling; mountain-biking, uphill, vigorous effort"
     ,"Stationary cycling; (moderate-to-vigorous effort / 90-100 watts)"
     ,"Circuit training, including kettlebells, vigorous intensity, minimal rest"
