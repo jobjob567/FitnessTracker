@@ -21,22 +21,14 @@ app.get('/picture/flip', (req, res)=>{
     res.send({ success: true, url: Game.Picture_In_Play });
 } );
 app.post('/players', (req, res)=>{
-    const player_id = Game.Join(req.body.name);
+    const player_id = Tracker_Server.Join(req.body.name);
     res.send({ success: true, player_id });
-} );
-app.post('/captions_in_play', (req, res)=>{
-    Game.Submit_Caption(req.user_id, req.body.text);
-    res.send({ success: true });
-} );
-app.post('/caption_chosen', (req, res)=>{
-    Game.Choose_Caption(req.user_id, req.body.id);
-    res.send({ success: true });
 } );
 
 // miiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiine
 
 app.post('/ccount', (req, res)=>{
-    Tracker_Server.GetCCount(Get_MET(Get_Index(req.body.work)), req.body.weight, req.body.time);
+    Tracker_Server.Get_CCount(req.user_id, req.body.Cwork, req.body.Cweight, req.body.Ctime);
     res.send({ success: true });
 } );
 app.get('/workouts', (req, res)=>{
