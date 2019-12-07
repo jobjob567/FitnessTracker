@@ -28,7 +28,7 @@ app.post('/players', (req, res)=>{
 // miiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiine
 
 app.post('/ccount', (req, res)=>{
-    Tracker_Server.Get_CCount(req.user_id, req.body.Cwork, req.body.Cweight, req.body.Ctime);
+    Tracker_Server.Get_CCount(req.user_id, req.body.Cwork, req.body2.Cweight, req.body3.Ctime);
     res.send({ success: true });
 } );
 app.get('/workouts', (req, res)=>{

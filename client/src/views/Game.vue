@@ -79,7 +79,7 @@ export default {
 
     async created(){
         this.Workouts = await Tracker_Server.Get_Work();
-        setInterval( async ()=> this.game = await Tracker_Server.Get_State(), 2000 )
+        //setInterval( async ()=> this.game = await Tracker_Server.Get_State(), 2000 )
     },
     methods: {
         getCCount(Cwork, Cweight, Ctime){

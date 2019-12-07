@@ -54,9 +54,6 @@ module.exports.Tracker_Server = {
         return {
             Players: this.Players,
             Worked_Outs: this.Worked_Outs,
-            Captions_In_Play: this.Captions_In_Play.map(x=> ({ text: x.text, player: this.Caption_Chosen == -1 ? 'hidden' : this.Players[x.player_id].name })), 
-            Picture_In_Play: this.Picture_In_Play,
-            Caption_Chosen: this.Caption_Chosen
         }
     },
 
