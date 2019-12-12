@@ -8,30 +8,47 @@ const METS =  require('./METS');
 module.exports.Tracker_Server = {
     Players: [],
     Type_Of_Workout: 0,
-    Worked_Outs: [],
+    Worked_Outs: [{id: 50, Dcal: 150}],
     Work_List,
     METS,
+    Cwork: "",
+    Cmet: 0,
+    Cweight: 0,
+    Ctime: 0,
+
     Get_Met(num){
-        this.val = METS[num];
+        this.val = num;
         return val;
     },
     Get_Index(str){
         this.chosen;
         for (i = 0; i < Work_List.length; i++) {
-            if(Work_List[i].equals(this.str) == true){
+            if(Work_List[i].equals(str) == true){
                 this.chosen = i;
             }
           }
           return chosen;
-    },
-    Get_CCount(player_id, met, weight, time){
-        cal= 0.0175*met*weight;
-        cal = cal * time;
-        this.Worked_Outs.push({ player_id, cal})
+    },/*
+    Get_CCount(player_id){
+        cal= 0.0175*this.Cmet*this.Cweight;
+        cal = cal * this.Ctime;
+        this.Worked_Outs.push({ id: player_id, burnt: cal})
+        return cal;
+    },*/
+    Add_CCount(player_id, Cmet, Cweight, Ctime){
+        cal= 0.0175 * Cmet * Cweight;
+        cal = cal * Ctime;
+        this.Worked_Outs.push({ id: player_id, burnt: cal})
         return cal;
     },
-    Work_Set(){
-
+    Set_Met(i){
+        this.Cmet = i;
+    },
+    Set_Weight(i){
+        this.Cweight = i;
+    },
+    Set_Time(i){
+        this.Ctime = i;
     },
     Get_Work(){
         return this.Work_List.slice(0,Work_List.length)
@@ -51,6 +68,7 @@ module.exports.Tracker_Server = {
     },
 
     Get_State(){
+        me: "";
         return {
             Players: this.Players,
             Worked_Outs: this.Worked_Outs,

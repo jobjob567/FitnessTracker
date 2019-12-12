@@ -18,7 +18,7 @@
                     
                         <option value="" selected disabled>Please select workout</option>
                         <option v-for="(w,i) in Workouts" :key="i">
-                            {{w.W}}
+                            {{w.W}} {{w.MET}}
                         </option>
                     </select>
                     </span><br/>
@@ -34,7 +34,7 @@
                 <p class="panel-heading">
                     Players
                 </p>
-                <li v-for="(p, i) in game.Players " :key="i" 
+                <li v-for="(p, i) in Players " :key="i" 
                     class="panel-block" :class="{ 'is-active': i == game.Dealer, 'has-text-primary': i == me.User_Id }">
                     <span class="panel-icon">
                     <i class="fas" :class=" i == game.Dealer ? 'fa-user-secret' : 'fa-user' " aria-hidden="true"></i>
@@ -63,28 +63,38 @@
 
 <script>
 
-import { Tracker_Server } from "../models/Game";
+import { Tracker_Server, Workouts } from "../models/Game";
 
 export default {
     data: ()=> ({
         game:{},
         My_Done: [],
-        me: Tracker_Server.User,
+        me: Tracker_Server.User.User_Id,
         Ctime: "", 
         Cweight: "",
         Cwork: "",
         Workouts: [],
+        Players: [],
 
     }),
 
     async created(){
         this.Workouts = await Tracker_Server.Get_Work();
-        //setInterval( async ()=> this.game = await Tracker_Server.Get_State(), 2000 )
+        console.log(this.Workouts.MET[1])
+        
+        setInterval( async ()=> this.game = await Tracker_Server.Get_State(), 2000 )
     },
     methods: {
-        getCCount(Cwork, Cweight, Ctime){
-            Cwork = Cwork;
-            Tracker_Server.Get_CCount(this.Cwork.MET, +this.Cweight, +this.Ctime);
+        getCCount(me, Cwork, Cweight, Ctime){
+            //this.Cwork = Cwork;
+            //Tracker_Server.Set_Met(this.Cwork.MET);
+            //Tracker_Server.Set_Weight(this.Cweight.data);
+            //Tracker_Server.Set_Time(this.Ctime.data);
+
+            //Tracker_Server.Get_CCount(me);
+            console.log(this.Cwork.MET)
+            Tracker_Server.Add_CCount({ me, Cwork, Cweight, Ctime })
+            //console.log({My_Done})
             
             this.My_Done = Tracker_Server.Get_Done();
         },

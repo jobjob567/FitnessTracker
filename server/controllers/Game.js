@@ -8,17 +8,17 @@ const { Tracker_Server } = require("../models/Game");
 const app = express.Router();
 
 app.get('/', (req, res)=>{
-    res.send({ ...Game.Get_State(), me: Game.Players[req.user_id] } );
+    res.send({ ...Tracker_Server.Get_State(), me: Tracker_Server.Players[req.user_id] } );
 } );
 app.get('/hand', (req, res)=>{
-    res.send(Game.Get_Hand());
+    res.send(Tracker_Server.Get_Hand());
 } );
 app.get('/picture/flip', (req, res)=>{
-    if(req.user_id != Game.Dealer){
+    if(req.user_id != Tracker_Server.Dealer){
         throw new CustomError(403, "Only the dealer can flip the picture")
     }
-    Game.Flip_Picture();
-    res.send({ success: true, url: Game.Picture_In_Play });
+    Tracker_Server.Flip_Picture();
+    res.send({ success: true, url: Tracker_Server.Picture_In_Play });
 } );
 app.post('/players', (req, res)=>{
     const player_id = Tracker_Server.Join(req.body.name);
@@ -28,20 +28,34 @@ app.post('/players', (req, res)=>{
 // miiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiine
 
 app.post('/ccount', (req, res)=>{
-    Tracker_Server.Get_CCount(req.user_id, req.body.Cwork, req.body2.Cweight, req.body3.Ctime);
-    res.send({ success: true });
+    const cal = Tracker_Server.Add_CCount(req.user_id, req.body.Cmet, req.body.Cweight, req.body.Ctime);
+    res.send({ success: true, cal });
 } );
 app.get('/workouts', (req, res)=>{
     res.send(Tracker_Server.Get_Work());
 } );
+
+app.get('/', (req, res)=>{
+    res.send({ ...Tracker_Server.Get_State(), me: Tracker_Server.Players[req.user_id] } );
+} );
+
 app.get('/done', (req, res)=>{
     res.send(Tracker_Server.Get_Done(req.user_id));
 } );
-app.get('/met', (req, res)=>{
+app.post('/met', (req, res)=>{
     res.send(Tracker_Server.Get_Met(req.body.text));
 } );
-app.get('/index', (req, res)=>{
+app.post('/index', (req, res)=>{
     res.send(Tracker_Server.Get_Index(req.body.text))
+} );
+app.post('/setmet', (req, res)=>{
+    res.send(Tracker_Server.Set_Met(req.body.text))
+} );
+app.post('/setweight', (req, res)=>{
+    res.send(Tracker_Server.Set_Weight(req.body.text))
+} );
+app.post('/settime', (req, res)=>{
+    res.send(Tracker_Server.Set_Time(req.body.text))
 } );
 
 

@@ -1,6 +1,6 @@
 
 // class important stuff
-import { api, api2, User } from "./my-fetch";
+import { api, User } from "./my-fetch";
 import $router from "../router/index";
 
 
@@ -17,8 +17,20 @@ export const Tracker_Server = {
     GetIndex(str){
         return api('index', { str })
     },
-    Get_CCount( work, weight, time){
-        return api2('ccount', { work, weight, time })
+    //Get_CCount( user ){
+    //    return api('ccount', { user })
+    //},
+    Add_CCount( info ){
+        return api('ccount', info )
+    },
+    Set_Met( met ){
+        return api('setmet', met)
+    },
+    Set_Weight( weight ){
+        return api('setweight', weight)
+    },
+    Set_Time(time){
+        return api('settime', time )
     },
     Get_Work(){
         return api('workouts')
