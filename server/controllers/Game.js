@@ -28,8 +28,8 @@ app.post('/players', (req, res)=>{
 // miiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiine
 
 app.post('/ccount', (req, res)=>{
-    const cal = Tracker_Server.Add_CCount(req.user_id, req.body.Cmet, req.body.Cweight, req.body.Ctime);
-    res.send({ success: true, cal });
+    const burnt = Tracker_Server.Add_CCount(req.user_id, req.body.metvar, req.body.Cweight, req.body.Ctime);
+    res.send({ success: true, burnt });
 } );
 app.get('/workouts', (req, res)=>{
     res.send(Tracker_Server.Get_Work());
@@ -40,7 +40,8 @@ app.get('/', (req, res)=>{
 } );
 
 app.get('/done', (req, res)=>{
-    res.send(Tracker_Server.Get_Done(req.user_id));
+    const My_Done = Tracker_Server.Get_Done(req.user_id);
+    res.send({ success: true, My_Done });
 } );
 app.post('/met', (req, res)=>{
     res.send(Tracker_Server.Get_Met(req.body.text));

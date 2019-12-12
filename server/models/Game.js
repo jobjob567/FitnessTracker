@@ -8,7 +8,7 @@ const METS =  require('./METS');
 module.exports.Tracker_Server = {
     Players: [],
     Type_Of_Workout: 0,
-    Worked_Outs: [{id: 50, Dcal: 150}],
+    My_Done: [{id: 1234, burnt: 150}],
     Work_List,
     METS,
     Cwork: "",
@@ -32,13 +32,13 @@ module.exports.Tracker_Server = {
     Get_CCount(player_id){
         cal= 0.0175*this.Cmet*this.Cweight;
         cal = cal * this.Ctime;
-        this.Worked_Outs.push({ id: player_id, burnt: cal})
+        this.My_Done.push({ id: player_id, burnt: cal})
         return cal;
     },*/
     Add_CCount(player_id, Cmet, Cweight, Ctime){
         cal= 0.0175 * Cmet * Cweight;
         cal = cal * Ctime;
-        this.Worked_Outs.push({ id: player_id, burnt: cal})
+        this.My_Done.push({ id: player_id, burnt: cal})
         return cal;
     },
     Set_Met(i){
@@ -62,16 +62,14 @@ module.exports.Tracker_Server = {
     },
 
     Get_Done(player_id){
-        if(player_id == this.player_id){
-            return this.Worked_Outs;
-        }
+            return this.My_Done;
     },
 
     Get_State(){
         me: "";
         return {
             Players: this.Players,
-            Worked_Outs: this.Worked_Outs,
+            My_Done: this.My_Done,
         }
     },
 

@@ -7,7 +7,9 @@
             <p>
             Time to calculate your progress.
             </p>
+            
             </b>
         </a>
 </h1>
+
 </template>
