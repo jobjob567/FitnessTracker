@@ -11,26 +11,8 @@ export const Tracker_Server = {
     Get_Done(){
         return api('done')
     },
-    Get_Met(num){
-        return api('met', { num })
-    },
-    GetIndex(str){
-        return api('index', { str })
-    },
-    //Get_CCount( user ){
-    //    return api('ccount', { user })
-    //},
     Add_CCount( info ){
         return api('ccount', info )
-    },
-    Set_Met( met ){
-        return api('setmet', met)
-    },
-    Set_Weight( weight ){
-        return api('setweight', weight)
-    },
-    Set_Time(time){
-        return api('settime', time )
     },
     Get_Work(){
         return api('workouts')
@@ -58,6 +40,4 @@ export const Tracker_Client = {
     Workouts,
     Cut_Cal: 0,
 }
-
-////////////////// class code //////////////////////////////////////////
 

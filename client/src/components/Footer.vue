@@ -7,7 +7,7 @@
       is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
     </p>
     
-    <p>As long as the server is running the information will be saved and accessible. If you leave your instance of the page, you will have to reloggin under different credentials.</p>
+    <p>As long as the server is running the information will be saved and accessible. If you reload the page, you will have to reloggin under different credentials.</p>
   </div>
 </footer>
 </template>

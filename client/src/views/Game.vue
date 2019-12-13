@@ -48,11 +48,12 @@
             
             <ul class="panel">
                 <p class="panel-heading">
-                    Burn List.
+                    Burn List for all,
+                    Your User ID: {{me.User_Id}}
                 </p>
                 <li v-for="(c, i) in game.My_Done " :key="i" class="panel-block" 
                 :class="{'is-hidden': My_Done.id != game.Dealer }">
-                  {{c.id}}, You have burned a total of {{c.burnt}} calories.
+                  User id: {{c.id}}, You have burned a total of {{c.burnt}} calories from this workout!
                     
                 </li>
             </ul>
