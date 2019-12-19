@@ -5,10 +5,10 @@
     <div class="hero-body">
       <div class="container">
         <h1 class="title">
-          Primary bold title
+          Fitness Tracker Website!
         </h1>
         <h2 class="subtitle">
-          Primary bold subtitle
+          Navigate to the 'tracker' page in order to log your exercises.
         </h2>
       </div>
     </div>

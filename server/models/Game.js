@@ -15,6 +15,19 @@ module.exports.Tracker_Server = {
     Cmet: 0,
     Cweight: 0,
     Ctime: 0,
+    extra: [],
+
+    retList(partial){
+        extra: [];
+        for (let index = 0; index < Work_List.length; index++) {
+            if (Work_List[index].filter(partial)) {
+                const ex = Work_List.W[index];
+                this.extra.push(ex);
+            }
+        }
+        return extra;
+    },
+
     Add_CCount(player_id, Cmet, Cweight, Ctime){
         cal= 0.0175 * Cmet * Cweight;
         cal = cal * Ctime;

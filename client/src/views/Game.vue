@@ -1,9 +1,18 @@
+
+
 <template>
 
 <div>
     <h1 class="is-size-1">
         Fitness Tracker
     </h1> 
+
+    
+            <div id="app">
+              <h1>dropDown Final</h1>
+                 <v-select label="W" :options="Workouts2" @search="retList"></v-select>
+            </div>
+
 
     <div class="columns">
         <div id = "Tracking">
@@ -29,7 +38,7 @@
                 Your total calories burned in this activity were: <span id="Tburnt"></span><br/>
                 <input type="button" value="Submit" @click="addCCount(me, Cwork, Cweight, Ctime)">
             </ul>
-            
+
             <ul class="panel">
                 <p class="panel-heading">
                     Current Users
@@ -56,6 +65,7 @@
                   User id: {{c.id}}, You have burned a total of {{c.burnt}} calories from this workout!
                     
                 </li>
+            
             </ul>
         </div>
     </div>
@@ -63,9 +73,19 @@
 </div>
 </template>
 
+            <script src="https://unpkg.com/vue@latest"></script>
+            <script src="https://unpkg.com/vue-select@latest"></script>
+
+
+            <script src="https://unpkg.com/vue-select@latest"></script>
 <script>
 
+
+import Vue from 'vue';
+import vSelect from 'vue-select';
 import { Tracker_Server, Workouts } from "../models/Game";
+
+Vue.component('v-select', vSelect);
 
 export default {
     data: ()=> ({
@@ -77,15 +97,22 @@ export default {
         Cwork: "",
         Workouts: [],
         Players: [],
-
+        Workouts2: [],
+        
     }),
-
+    
     async created(){
         this.Workouts = await Tracker_Server.Get_Work();
+        this.Workouts2 = await Tracker_Server.Get_Work();
         
         setInterval( async ()=> this.game = await Tracker_Server.Get_State(), 2000 )
     },
     methods: {
+
+            retList(partial){
+                this.Workouts2 = Tracker_Server.retList(partial);
+            },
+
         async addCCount(me, Cwork, Cweight, Ctime){
             console.log(me);
             var matches = Cwork.match(/\d+/g); 
@@ -125,4 +152,33 @@ export default {
     .is-clickable {
         cursor: pointer;
     }
+
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #2c3e5099;
+  text-rendering: optimizelegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-text-size-adjust: none;
+}
+
+#app {
+  max-width: 30em;
+  margin: 1em auto;
+}
+
+/*
+
+                
+
+
+
+
+
+*/
 </style>
+

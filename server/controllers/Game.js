@@ -5,6 +5,13 @@ const { Tracker_Server } = require("../models/Game");
 
 const app = express.Router();
 
+
+
+app.get('/filter', (req, res)=>{
+    const filtered = Tracker_Server.retList(req.partial);
+    res.send({ success: true, filtered });
+} );
+
 app.get('/', (req, res)=>{
     res.send({ ...Tracker_Server.Get_State(), me: Tracker_Server.Players[req.user_id] } );
 } );

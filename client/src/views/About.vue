@@ -6,5 +6,15 @@
       Creating different & functionable pages using modern-day methods, software, and development techniques.
       I'm excited for this work in progress to become a fully functional site!
     </p>
+      <v-select :options="options"></v-select>
+
   </div>
 </template>
+
+<script>
+export default {
+  data: ()=> ({
+    options: [Me, You, MyDogBlue]
+  })
+}
+</script>

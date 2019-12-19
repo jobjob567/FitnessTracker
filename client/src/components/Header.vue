@@ -1,6 +1,6 @@
 <template>
 <h1 class ="is-size-3">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="/game">
     <b>
             <img alt="Vue logo" src="../assets/runn.png" style="height: 18px;">
             Irunner™

@@ -8,6 +8,9 @@ import $router from "../router/index";
 
 export const Tracker_Server = {
     User,
+    retList( partial ){
+        return api('filter', partial )
+    },
     Get_Done(){
         return api('done')
     },
